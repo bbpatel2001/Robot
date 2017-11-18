@@ -75,6 +75,21 @@ class String(object):
         New in Robot Framework 2.8.6.
         """
         return string.upper()
+      
+    def convert_to_titlecase(self, string):
+        """Converts string to titlecase.
+
+        Examples:
+        | ${str1} = | Convert To Titlecase | abc |
+        | ${str2} = | Convert To Titlecase | i love robot Framework |
+        | ${str3} = | Convert To Titlecase | i love ROBOT Framework |
+        | Should Be Equal | ${str1} | Abc |
+        | Should Be Equal | ${str2} | I Love Robot Framework |
+        | Should Be Equal | ${str3} | I Love ROBOT Framework |
+
+        New in Robot Framework 2.8.6.
+        """
+        return ' '.join([word[0].capitalize()+word[1:] for word in string.split(' ')])   
 
     def encode_string_to_bytes(self, string, encoding, errors='strict'):
         """Encodes the given Unicode ``string`` to bytes using the given ``encoding``.
